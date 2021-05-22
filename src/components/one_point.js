@@ -50,7 +50,8 @@ class one_point extends React.Component{
     };
 
     show_value = (e) =>{
-
+      var table = document.getElementById("output");
+      var n = 0;
         try {
             const Parser = require('expr-eval').Parser;
 
@@ -71,15 +72,32 @@ class one_point extends React.Component{
         let chart = [];
 
         while(err > ERROR){
+            n++;
+            var row = table.insertRow(n);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
             x1 = expression.evaluate({ x: X })
             error_1 = Math.abs((x1-X)/x1)
 
             if(err === error_1){
                 break;
             }
+            cell1.innerHTML =  n ;
+            cell1.setAttribute("id", "cell");
+            cell2.innerHTML =  X ;
+            cell2.setAttribute("id", "cell");
+            cell3.innerHTML =  "" ;
+            cell3.setAttribute("id", "cell");
+            cell4.innerHTML =   "";
+            cell4.setAttribute("id", "cell");
+            cell5.innerHTML =  "" ;
+            cell5.setAttribute("id", "cell");
             let Y = expression.evaluate({ x: x1 })
             chart.push({data: x1,y: Y});
-            arr.push(<div className='result' key={i}>Iteration {i} : {x1}</div>);
+            //arr.push(<div className='result' key={i}>Iteration {i} : {x1}</div>);
             i++;
 
             err = error_1;
@@ -122,6 +140,7 @@ class one_point extends React.Component{
                    &nbsp;&nbsp;
                     <br />
                     <br />
+                    {this.state.result}
                   </center>
                 </Card>
               </Col>
@@ -141,10 +160,47 @@ class one_point extends React.Component{
           </ResponsiveContainer>
               </Col>
             </Row>
-            {this.state.result}
-            <br />
-            </div>
-        );
-      }
-    }
+            <Row gutter={24}>
+          <Col span={24}>
+            <Card title="Output" bordered={false}>
+              <table
+                id="output"
+                style={{ padding: "0px 8px" }}
+                className="table table-hover"
+              >
+                <tbody>
+                  <tr>
+                    <th width="20%">Iteration</th>
+                    <th width="25%">
+                      X<sub>L</sub>
+                    </th>
+                    <th width="25%">
+
+                    </th>
+                    <th width="30%">
+                     
+                    </th>
+                    <th width="30%"> </th>
+                  </tr>
+                  <tr className="list-data">
+                    <td
+                      width="20%"
+                      id="Iteration"
+                      style={{ textAlign: "center" }}
+                    />
+                    <td width="25%" id="xl1" />
+                    <td width="25%" id="xr1" />
+                    <td width="30%" id="x" />
+                    <td width="30%" id="error" />
+                  </tr>
+                </tbody>
+              </table>
+            </Card>
+          </Col>
+        </Row>
+        <br />
+        </div>
+    );
+  }
+}
 export default one_point;

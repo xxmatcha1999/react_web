@@ -79,7 +79,7 @@ class Polynomial extends React.Component{
         let i,j
         for(i= 0;i < rows;i++){
             for(j = 0; j < columns;j++){
-                wow.push(<span className="MyInput"><Input name={i.toString()+','+j.toString()} onChange={this.Getvalue} className="Input_2" style={{margin: '5px'}} value={this.state.Matrix[i][j]}/></span>)
+                wow.push(<span className="Matrix"><input name={i.toString()+','+j.toString()} onChange={this.Getvalue} className="Matrix" style={{margin: '5px'}} value={this.state.Matrix[i][j]}/></span>)
             }
             wow.push(<div></div>)
         }
@@ -143,19 +143,19 @@ class Polynomial extends React.Component{
 
     render(){
         return(
-            <div className='allincompro'>
-                <h2>Newton interpolating</h2>
-                <div>
-                    <Button className='Button_' type="primary" onClick={this.AddMatrix}>Add Point</Button>
-                    <Button className='Button_' type="primary" onClick={this.DelMatrix}>Delete Point</Button>
-                    <Button className='Button_' type="primary" onClick={this.Calculate}>Calculate</Button>
-                    <Button type="primary" onClick={this.getdata_} >Get example</Button>
+            <div >
+                <h2 className="MakeButton">Newton interpolating</h2>
+                <div className="MakeButton">
+                    <Button className='button_laout' type="primary" onClick={this.AddMatrix}>Add Point</Button>
+                    <Button className='button_laout' type="primary" onClick={this.DelMatrix}>Delete Point</Button>
+                    <Button className='button_laout' type="primary" onClick={this.Calculate}>Calculate</Button>
+                    <Button className='button_laout' type="primary" onClick={this.getdata_} >Get example</Button>
                 </div>
-                <div>
-                    X : <Input onChange={this.GetX}  value={this.state.X} style={{margin: '5px' ,  width: 150}} width/>
+                <div className="MakeButton">
+                    X : <input onChange={this.GetX}  className="Input_2" value={this.state.X} style={{margin: '5px' ,  width: 150}} width/>
                 </div>
-                <div>{this.MakeMatrix()}</div>
-                {this.state.Answer}
+                <div className="Mid">{this.MakeMatrix()}</div>
+                
                 <LineChart width={1200} height={300} data={this.state.Chart} margin={{ top: 5, right: 20, bottom: 5, left: 400 }}>
                     {/* <Line type="monotone" dataKey="fx" stroke="#FF0000" /> */}
                     <Line type="monotone" dataKey="y" stroke="#0000FF" dot={false}/>
@@ -166,6 +166,7 @@ class Polynomial extends React.Component{
                     <ReferenceLine x={parseFloat(this.state.X)} stroke="red" label={parseFloat(this.state.X)} />
                     <ReferenceLine y={parseFloat(this.state.Y)} label={parseFloat(this.state.Y)} stroke="red" />
                     </LineChart>
+                    {this.state.Answer}
             </div>
         )
     }

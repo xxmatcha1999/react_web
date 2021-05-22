@@ -10,7 +10,6 @@ let apiUrl = "http://localhost:4040/data/root/Bisection?key=45134Asd4864wadfad"
 //api
 
 const math = create(all);
-
 function bisection_cal( in_xl, in_xr, in_err,in_equa) {
 
   let arr = [];
@@ -26,20 +25,37 @@ function bisection_cal( in_xl, in_xr, in_err,in_equa) {
   let Xmid = (XL+XR)/2;
   let XM = 0;
   let errer_sum = 1;
-
+  var table = document.getElementById("output");
+  var n = 0;
   var expression = Parser.parse(Equation);
   let result = expression.evaluate({ x: Xmid }) * expression.evaluate({ x: XR });
 
   (result < 0) ? (XL = Xmid) : XR = Xmid;
-
+  
       while(errer_sum > ERROR){
+        n++;
+        var row = table.insertRow(n);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        
           XM = (XL+XR)/2;
           result = expression.evaluate({ x: XM }) * expression.evaluate({ x: XR });
           (result < 0) ? (XL = XM) : (XR = XM);
           errer_sum = Math.abs((XM-Xmid)/XM);
           Xmid = XM;
-          arr.push([XL,XR,XM,errer_sum]);
+          cell1.innerHTML =  n ;
+          cell1.setAttribute("id", "cell");
+          cell2.innerHTML =  XL ;
+          cell2.setAttribute("id", "cell");
+          cell3.innerHTML =  XR ;
+          cell3.setAttribute("id", "cell");
+          cell4.innerHTML =  XM ;
+          cell4.setAttribute("id", "cell");
+          arr.push([XL,XR,XM,errer_sum]);  
       }
+
       return arr;
 }
 class Bisection extends React.Component {
@@ -93,20 +109,31 @@ getERR= (e) => {
         ERROR: e.target.value,
     });
 };
-
+cleantable = () => {
+  var count = document.getElementById("output").getElementsByTagName("tr")
+    .length;
+  for (var j = 1; j < count; j++) {
+    document.getElementById("output").deleteRow(1);
+  }
+};
 show_value = (e) =>{
   try{
+    this.cleantable();
       const Parser = require('expr-eval').Parser;
       let Equation = this.state.Equation;
 
       var expression = Parser.parse(Equation);
 
+
       let data = bisection_cal(this.state.XL,this.state.XR,this.state.ERROR,this.state.Equation);
       let i;
       let arr = [];
       let Chart = [];
+
       for(i = 0; i < data.length;i++){
-          arr.push(<div className='result' key={i}>Iteration {i+1} : {data[i][1]}</div>);
+        
+          //arr.push(<div className='result' key={i}>Iteration {i+1} : {data[i][1]}</div>);
+          
       }
 
       for(i = parseFloat(this.state.XL)-0.1;i <= parseFloat(this.state.XR)+0.1;i=i+0.1){
@@ -114,7 +141,7 @@ show_value = (e) =>{
         
           Chart.push({fx: P_X,y: 0,x: i.toFixed(2)})
       }
-
+      
       this.setState({result: arr ,Chart: Chart});
 
   } catch(error) {
@@ -179,7 +206,7 @@ show_value = (e) =>{
                 className="table table-hover"
               >
                 <tbody>
-                  <tr style={{ textAlign: "center" }}>
+                  <tr>
                     <th width="20%">Iteration</th>
                     <th width="25%">
                       X<sub>L</sub>
@@ -190,7 +217,7 @@ show_value = (e) =>{
                     <th width="30%">
                       X<sub>M</sub>
                     </th>
-                    <th width="30%">Error</th>
+                    <th width="30%"> </th>
                   </tr>
                   <tr className="list-data">
                     <td

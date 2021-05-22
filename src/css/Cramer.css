@@ -1,12 +1,23 @@
-
+.allincompro{
+    background-color:#0099ff17;
+    border-radius: 20px;
+}
 
 .MakeMatrix{
     display: flex;
     flex-flow: row;
     justify-content: center;
 }
+.MakeMatrixx{
+    justify-content: center;
+}
 
 
 .button_laout{
     margin: 5px;
+}
+
+.Mid{
+    justify-content: center;
+    text-align: center;
 }

@@ -103,18 +103,17 @@ class Lagrange extends React.Component{
 
     render(){
         return(
-            <div className='allincompro'>
-                <h2>Lagrange interpolation</h2>
-                <div>
-                    <Button className='Button_' type="primary" onClick={this.AddMatrix}>Add Point</Button>
-                    <Button className='Button_' type="primary" onClick={this.DelMatrix}>Delete Point</Button>
-                    <Button className='Button_' type="primary" onClick={this.Calculate}>Calculate</Button>
-                    <Button type="primary" onClick={this.getdata_} >Get example</Button>
+            <div >
+                <h2 className='MakeButton' >Lagrange interpolation</h2>
+                <div className='MakeButton'>
+                    <Button className='button_laout' type="primary" onClick={this.AddMatrix}>Add row/column</Button>
+                    <Button className='button_laout' type="primary" onClick={this.DelMatrix}>Delete row/column</Button>
+                    <Button className='button_laout' type="primary" onClick={this.Calculate}>Calculate</Button>
+                    <Button className='button_laout' type="primary" onClick={this.getdata_} >Get example</Button>
                 </div>
-                <span className="Text_Input_2"> X value : </span>
-                <span><Input value={this.state.X} onChange={this.GetX} className="Input_2"/></span>
-                <Matrix2Input row={this.state.rows} onChange={this.Input} value={this.state.Matrix}/>
-                <div>{this.state.Answer}</div>
+                <div className="MakeButton"> X value : 
+                <input value={this.state.X} onChange={this.GetX} className="Input_2"/></div>
+                <div className="Mid"><Matrix2Input  row={this.state.rows} onChange={this.Input} value={this.state.Matrix}/></div>
                 <LineChart width={1200} height={300} data={this.state.Chart} margin={{ top: 5, right: 20, bottom: 5, left: 400 }}>
                     <Line type="monotone" dataKey="y" stroke="#0000FF" dot={false}/>
                     <CartesianGrid stroke="#ccc" />
@@ -123,6 +122,7 @@ class Lagrange extends React.Component{
                     <ReferenceLine x={parseFloat(this.state.X)} stroke="red" label={parseFloat(this.state.X)} />
                     <ReferenceLine y={parseFloat(this.state.Y)} label={parseFloat(this.state.Y)} stroke="red" />
                     </LineChart>
+                    <div>{this.state.Answer}</div>
             </div>
         )
     }

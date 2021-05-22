@@ -1,4 +1,8 @@
-
+.MakeMatrix{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
 
 .Button_{
     margin: 5px;

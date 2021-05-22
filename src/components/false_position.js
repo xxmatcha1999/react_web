@@ -6,11 +6,11 @@ import { create, all } from "mathjs";
 import axios from 'axios' 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 const Parser = require('expr-eval').Parser; 
-let apiUrl = "http://localhost:4040/data/root/Bisection?key=45134Asd4864wadfad"
+let apiUrl = "http://localhost:4040/data/root/False_position?key=45134Asd4864wadfad"
 //api
 
 class False_position extends React.Component{
-
+    
     state = {
         Equation: '',
         XL: '',
@@ -66,7 +66,8 @@ class False_position extends React.Component{
     
 
     show_value = (e) =>{
-
+        var table = document.getElementById("output");
+        var n = 0;
         try{
             const Parser = require('expr-eval').Parser; // ฟั่งชั้นแปลงสมการ
         let i;
@@ -104,6 +105,13 @@ class False_position extends React.Component{
         //(expression.evaluate({ x: X }) > 0) ? (XR = X) : (XL = X)
         i = 1;
         while(err > ERROR){
+            n++;
+            var row = table.insertRow(n);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
             Xnew = ((XL*expression.evaluate({ x: XR }))-(XR*expression.evaluate({ x: XL })))/(expression.evaluate({ x: XR })-expression.evaluate({ x: XL }))
 
             if(expression.evaluate({ x: Xnew })*expression.evaluate({ x: XR })){
@@ -112,9 +120,19 @@ class False_position extends React.Component{
             else{
                 XL = Xnew
             }
+            cell1.innerHTML =  n ;
+            cell1.setAttribute("id", "cell");
+            cell2.innerHTML =  XL ;
+            cell2.setAttribute("id", "cell");
+            cell3.innerHTML =  XR ;
+            cell3.setAttribute("id", "cell");
+            cell4.innerHTML =   "";
+            cell4.setAttribute("id", "cell");
+            cell5.innerHTML =  "" ;
+            cell5.setAttribute("id", "cell");
 
             //((expression.evaluate({ x: Xnew })*expression.evaluate({ x: XR })) > 0) ? (XR = Xnew) : (XL = Xnew)
-            arr.push(<div className='result' key={i}>Iteration {i} : {Xnew}</div>);
+            //arr.push(<div className='result' key={i}>Iteration {i} : {Xnew}</div>);
             err = Math.abs((Xnew-X)/Xnew);
             X = Xnew;
             i++;
@@ -175,10 +193,48 @@ class False_position extends React.Component{
           </ResponsiveContainer>
               </Col>
             </Row>
-            
-            <br />
-            </div>
-        );
-      }
-        }
+            <Row gutter={24}>
+          <Col span={24}>
+            <Card title="Output" bordered={false}>
+              <table
+                id="output"
+                style={{ padding: "0px 8px" }}
+                className="table table-hover"
+              >
+                <tbody>
+                  <tr>
+                    <th width="20%">Iteration</th>
+                    <th width="25%">
+                      X<sub>L</sub>
+                    </th>
+                    <th width="25%">
+                      X<sub>R</sub>
+                    </th>
+                    <th width="30%">
+                     
+                    </th>
+                    <th width="30%"> </th>
+                  </tr>
+                  <tr className="list-data">
+                    <td
+                      width="20%"
+                      id="Iteration"
+                      style={{ textAlign: "center" }}
+                    />
+                    <td width="25%" id="xl1" />
+                    <td width="25%" id="xr1" />
+                    <td width="30%" id="x" />
+                    <td width="30%" id="error" />
+                  </tr>
+                </tbody>
+              </table>
+            </Card>
+          </Col>
+        </Row>
+        {this.state.result}
+        <br />
+        </div>
+    );
+  }
+}
 export default False_position;

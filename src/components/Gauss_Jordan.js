@@ -141,7 +141,7 @@ class Gauss_Jordan extends React.Component{
 
     render(){
         return(
-            <div className='allincompro'>
+            <div >
                 <h2 className='MakeButton'>Gauss Jordan</h2>
                 <div className='MakeButton'>
                     <Button className='button_laout' type="primary" onClick={this.AddMatrix}>Add row/column</Button>
@@ -152,7 +152,7 @@ class Gauss_Jordan extends React.Component{
                 <div className='MakeMatrix'>
                 <Matrix row={this.state.rows} onChange={this.Input} value={this.state.Matrix}/>
                 </div>
-                <div className='Matrix'>{this.state.X}</div>
+                <div className='MakeMatrix'>{this.state.X}</div>
             </div>
             
         )

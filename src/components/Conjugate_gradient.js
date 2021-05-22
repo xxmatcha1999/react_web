@@ -184,8 +184,8 @@ render(){
         <div >
             <h2 className='MakeButton'>Conjugate</h2>
             <div>
-                    <h2 className="Text_"> ERROR : </h2>
-                    <Input onChange={this.getERR} className="Input_2" value={this.state.ERROR} />
+            <div className="MakeButton"> ERROR : 
+                    <input onChange={this.getERR} className="Input_2" value={this.state.ERROR} /></div>
             </div>
             <div className='MakeButton'>  
                 <Button className='button_laout' type="primary" onClick={this.AddMatrix}>Add row/column</Button>

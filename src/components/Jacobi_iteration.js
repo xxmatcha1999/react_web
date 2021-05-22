@@ -59,7 +59,9 @@ function Jacobi(a,b,x,error_,_error) {
     }
 
     return data;
+    
 }
+
 class Jacobi_iteration extends React.Component{
 
     state = {
@@ -189,7 +191,7 @@ class Jacobi_iteration extends React.Component{
                 <div className='MakeMatrix'>
                 <Matrix row={this.state.rows} onChange={this.Input} value={this.state.Matrix}/>
                 </div>
-                <div className='Matrix'>{this.state.X}</div>
+                <div className='MakeMatrix'>{this.state.X}</div>
             </div>
             
         )

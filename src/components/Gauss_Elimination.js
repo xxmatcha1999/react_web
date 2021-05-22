@@ -2,7 +2,6 @@ import React from 'react'
 import '../css/Gauss_Elimina.css'
 import { Input } from 'antd'
 import { Button } from 'antd'
-
 import {Matrix} from './Matrix'
 
 import axios from 'axios'
@@ -154,7 +153,7 @@ class Gauss_Elimination extends React.Component{
 
         for( i = 0;i < rows;i++){
             result = aw[i]
-            data.push(<div className='result' key={i}> X{i+1} : {result}</div>)
+            data.push(<div  key={i}> X{i+1} : {result}</div>)
         }
 
         this.setState({X: data})
@@ -162,7 +161,7 @@ class Gauss_Elimination extends React.Component{
 
     render(){
         return(
-            <div className='allincompro'>
+            <div >
                 <h2 className='MakeButton'>Gauss Elimination</h2>
                 <div className='MakeButton'>
                     <Button className='button_laout' type="primary" onClick={this.AddMatrix}>Add row/column</Button>
@@ -173,7 +172,7 @@ class Gauss_Elimination extends React.Component{
                 <div className='MakeMatrix'>
                 <Matrix row={this.state.rows} onChange={this.Input} value={this.state.Matrix}/>
                 </div>
-                <div className='Matrix'>{this.state.X}</div>
+                <div className='MakeMatrix'>{this.state.X}</div>
             </div>
             
         )

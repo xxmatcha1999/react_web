@@ -20,9 +20,8 @@ class Cramer extends React.Component{
             const data = await axios.post(apiUrl).then(e => (
                 e.data
             ))
-            
-            let row = data["row"];
 
+            let row = data["row"];
             if(row > parseInt(this.state.rows)){
                 let r = parseInt(this.state.rows);
                 for(let i = r;i < row;i++){
@@ -35,7 +34,7 @@ class Cramer extends React.Component{
                     this.DelMatrix();
                 }
             }
-                
+
             this.setState({Matrix: data["Matrix"]})
 
           } catch (error) {
@@ -57,7 +56,6 @@ class Cramer extends React.Component{
     }
 
     AddMatrix = (e) =>{
-        
         let Matrix = this.state.Matrix;
         Matrix.push([]);
         this.setState({Matrix: Matrix})
@@ -74,22 +72,18 @@ class Cramer extends React.Component{
                 Matrix[i].pop();
             }
             this.setState({Matrix: Matrix})
-            
         }
-        
     }
 
     Calculate = (e) =>{
 
         var math = require('mathjs');
-
         let Matrix_ = this.state.Matrix;
         let Matrix = [];
         let Answer = [];
         let rows = this.state.rows;
         rows = parseInt(rows);
-
-        let i,j
+        let i,j;
 
         for(i = 0;i < rows;i++){
             let tem = [];
@@ -126,14 +120,14 @@ class Cramer extends React.Component{
         for(i = 0;i < rows; i++){
             X[i] = (<div  key={i}>X{i+1} : {X[i]}</div>);
         }
-        
+
         this.setState({X: X});
 
     }
 
     render(){
         return(
-            <div className='allincompro'>
+            <div >
                 <h2 className='MakeButton'>Cramer's Rule</h2>
                 <div className='MakeButton'>
                     <Button className='button_laout' type="primary" onClick={this.AddMatrix}>Add row/column</Button>
@@ -142,9 +136,9 @@ class Cramer extends React.Component{
                     <Button className='button_laout' type="primary" onClick={this.getdata_} >Get example</Button>
                 </div>
                 <div className='MakeMatrix'>
-                <Matrix row={this.state.rows} onChange={this.Input} value={this.state.Matrix}/>
+                <Matrix  row={this.state.rows} onChange={this.Input} value={this.state.Matrix}/>
                 </div>
-                <div className='Matrix'>{this.state.X}</div>
+                <h4 className='MakeButton'>{this.state.X}</h4>
             </div>
             
         )

@@ -57,6 +57,8 @@ class secant extends React.Component{
     };
 
     show_value = (e) =>{
+      var table = document.getElementById("output");
+      var n = 0;
         try{
             const Parser = require('expr-eval').Parser;
 
@@ -79,6 +81,23 @@ class secant extends React.Component{
         let err_ = 1;
 
         while(err_ > ERROR){
+          n++;
+            var row = table.insertRow(n);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            cell1.innerHTML =  n ;
+            cell1.setAttribute("id", "cell");
+            cell2.innerHTML =  X_1 ;
+            cell2.setAttribute("id", "cell");
+            cell3.innerHTML =  X_2 ;
+            cell3.setAttribute("id", "cell");
+            cell4.innerHTML =   "";
+            cell4.setAttribute("id", "cell");
+            cell5.innerHTML =  "" ;
+            cell5.setAttribute("id", "cell");
             X_2 = X_1 + d;
             Fan = - ((expression.evaluate({x: X_2})*(X_1-X_2))/(expression.evaluate({x: X_1})-expression.evaluate({x: X_2})))
             Xnew = X_2 + Fan;
@@ -152,10 +171,47 @@ class secant extends React.Component{
             </ResponsiveContainer>
               </Col>
             </Row>
-            {this.state.result}
-            <br />
-            </div>
-        );
-      }
-    }
+            <Row gutter={24}>
+          <Col span={24}>
+            <Card title="Output" bordered={false}>
+              <table
+                id="output"
+                style={{ padding: "0px 8px" }}
+                className="table table-hover"
+              >
+                <tbody>
+                  <tr>
+                    <th width="20%">Iteration</th>
+                    <th width="25%">
+                      X_1
+                    </th>
+                    <th width="25%">
+                      X_2
+                    </th>
+                    <th width="30%">
+                     
+                    </th>
+                    <th width="30%"> </th>
+                  </tr>
+                  <tr className="list-data">
+                    <td
+                      width="20%"
+                      id="Iteration"
+                      style={{ textAlign: "center" }}
+                    />
+                    <td width="25%" id="xl1" />
+                    <td width="25%" id="xr1" />
+                    <td width="30%" id="x" />
+                    <td width="30%" id="error" />
+                  </tr>
+                </tbody>
+              </table>
+            </Card>
+          </Col>
+        </Row>
+        <br />
+        </div>
+    );
+  }
+}
 export default secant

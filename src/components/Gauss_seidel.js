@@ -112,9 +112,9 @@ class Gauss_seidel extends React.Component{
             error_.push(9999);
         }
 
-        let answer = Jacobi_iteration(a,b,x,error_,parseFloat(this.state.ERROR))
+        let answer = Jacobi_iteration(a,b,x,error_,parseFloat(this.state.ERROR));
 
-        this.setState({X: answer})
+        this.setState({X: answer});
 
 
     }

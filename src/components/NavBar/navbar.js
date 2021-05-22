@@ -42,9 +42,9 @@ export default function navbar(){
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/Polynomial">Newton Interpolation</a>
                     <a class="dropdown-item" href="/lagrange">Lagrange</a>
-                    <a class="dropdown-item" href="/Cubic_spline">Cubic_spline</a>
-                    <a class="dropdown-item" href="/Linear_regression">Linear_regression</a>
-                    <a class="dropdown-item" href="/Polynomial_regression">Polynomial_regression </a>
+                    <a class="dropdown-item" href="/Cubic_spline">Cubic Spline</a>
+                    <a class="dropdown-item" href="/Linear_regression">Linear Regression</a>
+                    <a class="dropdown-item" href="/Polynomial_regression">Polynomial Regression </a>
                     </div>
                 </li>
                 </ul>

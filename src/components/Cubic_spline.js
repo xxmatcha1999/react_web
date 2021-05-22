@@ -110,18 +110,20 @@ class Cubic_spline extends React.Component{
 
     render(){
         return(
-            <div className='allincompro'>
-                <h2>Cubic-spline</h2>
-                <div>
-                    <Button className='Button_' type="primary" onClick={this.AddMatrix}>Add Point</Button>
-                    <Button className='Button_' type="primary" onClick={this.DelMatrix}>Delete Point</Button>
-                    <Button className='Button_' type="primary" onClick={this.Calculate}>Calculate</Button>
-                    <Button type="primary" onClick={this.getdata_} >Get example</Button>
+            <div >
+                <h2 className="MakeButton">Cubic-spline</h2>
+                <div  className="MakeButton">
+                    <Button className='button_laout' type="primary" onClick={this.AddMatrix}>Add Point</Button>
+                    <Button className='button_laout' type="primary" onClick={this.DelMatrix}>Delete Point</Button>
+                    <Button className='button_laout' type="primary" onClick={this.Calculate}>Calculate</Button>
+                    <Button className='button_laout' type="primary" onClick={this.getdata_} >Get example</Button>
                 </div>
-                <span className="Text_Input_2"> X value : </span>
-                <span><Input onChange={this.GetX} value={this.state.X} className="Input_2"/></span>
-                <Matrix2Input row={this.state.rows} onChange={this.Input} value={this.state.Matrix}/>
-                <div>{this.state.Answer}</div>
+                <div className="MakeButton">
+                    X :  <span><input onChange={this.GetX} value={this.state.X} className="Input_2"/></span>
+                </div>
+               
+                 <div className="Mid"><Matrix2Input  row={this.state.rows} onChange={this.Input} value={this.state.Matrix}/></div>
+                
                 <LineChart width={1200} height={300} data={this.state.Chart} margin={{ top: 5, right: 20, bottom: 5, left: 400 }}>
                     <Line type="monotone" dataKey="y" stroke="#0000FF" dot={false}/>
                     <CartesianGrid stroke="#ccc" />
@@ -130,6 +132,7 @@ class Cubic_spline extends React.Component{
                     <ReferenceLine x={parseFloat(this.state.X)} stroke="red" label={parseFloat(this.state.X)} />
                     <ReferenceLine y={parseFloat(this.state.Y)} label={parseFloat(this.state.Y)} stroke="red" />
                     </LineChart>
+                    <div>{this.state.Answer}</div>
             </div>
         )
     }

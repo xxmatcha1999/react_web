@@ -61,7 +61,7 @@ class App extends Component {
               <Route  exact path="/Cubic_spline" component={Cubic_spline} />
               <Route  exact path="/Linear_regression" component={Linear_regression} />
               <Route  exact path="/Polynomial_regression" component={Polynomial_regression} />
-              <Route exact path='/swagger' component={SW}></Route>
+              <Route  exact path='/swagger' component={SW}></Route>
               
             </Content>
           </Layout>
